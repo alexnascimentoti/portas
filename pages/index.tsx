@@ -2,8 +2,12 @@ import Cartao from "../components/Cartao";
 import styles from '../styles/Formulario.module.css'
 import Link from "next/link";
 import EntradaNumerica from "../components/EntradaNumerica";
+import { useState } from "react";
 
 export default function Formulario() {
+
+  const [qtdePortas, setQtdePortas] = useState(3)
+  const [comPresente, setComPresente] = useState(1)
 
   return (
     <div className={styles.form}>
@@ -12,16 +16,23 @@ export default function Formulario() {
           <h1>Monty hall</h1>  
         </Cartao>  
         <Cartao>
-          <EntradaNumerica/>
+          <EntradaNumerica 
+            text="Qtde portas?" 
+            value={qtdePortas} 
+            onChange={novaQtde => setQtdePortas(novaQtde)}
+          />
         </Cartao>  
       </div>
       <div>
         <Cartao>
-          <EntradaNumerica/>
+          <EntradaNumerica 
+            text="Porta com presente?" 
+            value={comPresente} 
+            onChange={novaPortaComPresente => setComPresente(novaPortaComPresente)}/>
         </Cartao>  
           
         <Cartao bgcolor="#28a085">
-          <Link href={`/jogo/4/2`}>
+          <Link href={`/jogo/${qtdePortas}/${comPresente}`}>
             <h2 className={styles.link} style={{ flex: "1", margin: "0" }}>Iniciar</h2>
           </Link>
         </Cartao>  
